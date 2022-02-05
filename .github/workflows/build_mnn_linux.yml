@@ -1,6 +1,9 @@
 name: MNN Linux
 
-on: [ workflow_dispatch ]
+on:
+  push:
+    tags: '*'
+  [workflow_dispatch]
 
 jobs:
   build:
@@ -16,3 +19,11 @@ jobs:
       with:
         name: mnn_prebuilt_linux.tgz
         path: mnn_prebuilt_linux.tgz
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: |
+          mnn_prebuilt_linux.tgz
+          NOTICE.md

@@ -1,6 +1,9 @@
 name: MNN Windows
 
-on: [ workflow_dispatch ]
+on:
+  push:
+    tags: '*'
+  [workflow_dispatch]
 
 jobs:
   build:
@@ -25,4 +28,12 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: mnn_prebuilt_windows.zip
-        path: ./temp/MNN/mnn_prebuilt_windows.zip
+        path: ./temp/mnn_prebuilt_windows.zip
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: |
+          ./temp/mnn_prebuilt_windows.zip
+          NOTICE.md

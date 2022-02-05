@@ -56,8 +56,9 @@ mv Release/*.exe tools-windows-vs2019/
 cd ..
 
 # Compress artifacts
+cd ..
 mkdir mnn_prebuilt
-mv build/windows-vs2019 mnn_prebuilt/.
-mv build_vulkan/windows-vs2019-vulkan mnn_prebuilt/.
-mv build_tools/tools-windows-vs2019 mnn_prebuilt/.
+mv MNN/build/windows-vs2019 mnn_prebuilt/.
+mv MNN/build_vulkan/windows-vs2019-vulkan mnn_prebuilt/.
+mv MNN/build_tools/tools-windows-vs2019 mnn_prebuilt/.
 powershell Compress-Archive -Path mnn_prebuilt -DestinationPath mnn_prebuilt_windows.zip
