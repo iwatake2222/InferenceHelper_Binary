@@ -13,17 +13,25 @@ powershell ./schema/generate.ps1
 mkdir build
 cd build
 cmake -DMNN_BUILD_TOOLS=OFF -DCMAKE_INSTALL_PREFIX=windows-vs2019 ..
-MSBuild ./MNN.sln /p:Configuration=Release
+MSBuild -m:4 ./MNN.sln /p:Configuration=Release
 MSBuild INSTALL.vcxproj /p:Configuration=Release
 mv Release/MNN.dll windows-vs2019/lib/.
+MSBuild -m:4 ./MNN.sln /p:Configuration=Debug
+mkdir windows-vs2019/lib/debug/
+mv Debug/MNN.dll windows-vs2019/lib/debug/MNN.dll
+mv Debug/MNN.lib windows-vs2019/lib/debug/MNN.lib
 cd ..
 
 mkdir build_vulkan
 cd build_vulkan
 cmake -DMNN_BUILD_TOOLS=OFF -DMNN_VULKAN=ON -DCMAKE_INSTALL_PREFIX=windows-vs2019-vulkan ..
-MSBuild ./MNN.sln /p:Configuration=Release
+MSBuild -m:4 ./MNN.sln /p:Configuration=Release
 MSBuild INSTALL.vcxproj /p:Configuration=Release
 mv Release/MNN.dll windows-vs2019-vulkan/lib/.
+MSBuild -m:4 ./MNN.sln /p:Configuration=Debug
+mkdir windows-vs2019-vulkan/lib/debug/
+mv Debug/MNN.dll windows-vs2019-vulkan/lib/debug/MNN.dll
+mv Debug/MNN.lib windows-vs2019-vulkan/lib/debug/MNN.lib
 cd ..
 
 # Build tools
@@ -42,14 +50,14 @@ cd ../../
 mkdir build_tools
 cd build_tools
 cmake -DMNN_BUILD_TOOLS=OFF -DMNN_BUILD_SHARED_LIBS=OFF -DMNN_BUILD_CONVERTER=ON -DMNN_BUILD_QUANTOOLS=on -DCMAKE_BUILD_TYPE=Release ..
-MSBuild ./MNN.sln /p:Configuration=Release
-mkdir tools_windows-vs2019
-mv Release/*.exe tools_windows-vs2019/
+MSBuild -m:4 ./MNN.sln /p:Configuration=Release
+mkdir tools-windows-vs2019
+mv Release/*.exe tools-windows-vs2019/
 cd ..
 
 # Compress artifacts
 mkdir mnn_prebuilt
 mv build/windows-vs2019 mnn_prebuilt/.
 mv build_vulkan/windows-vs2019-vulkan mnn_prebuilt/.
-mv build_tools/tools_windows-vs2019 mnn_prebuilt/.
+mv build_tools/tools-windows-vs2019 mnn_prebuilt/.
 powershell Compress-Archive -Path mnn_prebuilt -DestinationPath mnn_prebuilt_windows.zip
