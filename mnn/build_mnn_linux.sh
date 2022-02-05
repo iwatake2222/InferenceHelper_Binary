@@ -128,5 +128,5 @@ find . -maxdepth 1  -executable -type f | xargs -I% mv % tools-ubuntu-2004/
 mv tools-ubuntu-2004 ${DIR_ARTIFACTS}/tools-ubuntu-2004
 
 # Compress artifacts
-cd ${DIR_ARTIFACTS}/..
-tar czvf mnn_prebuilt.tgz ${DIR_ARTIFACTS}
+cd
+tar czvf mnn_prebuilt_linux.tgz -C ${DIR_ARTIFACTS}/../ mnn_prebuilt
