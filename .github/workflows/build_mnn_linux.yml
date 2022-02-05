@@ -24,6 +24,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
+        draft: true
         files: |
           mnn_prebuilt_linux.tgz
           NOTICE.md
