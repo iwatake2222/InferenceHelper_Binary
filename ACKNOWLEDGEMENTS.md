@@ -1,0 +1,6 @@
+- MNN
+   - https://github.com/alibaba/MNN
+   - Copyright (C) 2018 Alibaba Group Holding Limited
+   - Licensed under the Apache License, Version 2.0
+   - Modifications: no
+   - Pre-built libraries are generated from MNN

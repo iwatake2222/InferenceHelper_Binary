@@ -27,4 +27,4 @@ jobs:
         draft: true
         files: |
           mnn_prebuilt_linux.tgz
-          NOTICE.md
+          ACKNOWLEDGEMENTS.md
