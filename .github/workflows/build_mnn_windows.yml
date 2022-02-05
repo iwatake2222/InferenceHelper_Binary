@@ -3,7 +3,7 @@ name: MNN Windows
 on:
   push:
     tags: '*'
-  [workflow_dispatch]
+  workflow_dispatch:
 
 jobs:
   build:
