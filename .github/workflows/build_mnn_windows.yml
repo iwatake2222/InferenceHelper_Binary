@@ -9,6 +9,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: setup-msbuild
+      uses: microsoft/setup-msbuild@v1.1
+
     - name: Build
       run: |
         mkdir temp
