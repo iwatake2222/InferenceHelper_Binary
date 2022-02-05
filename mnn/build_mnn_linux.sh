@@ -3,7 +3,7 @@
 # docker exec -it ubuntu20_build_00 bash
 
 # Prepare output directory
-cd
+DIR_TOP=`pwd`
 DIR_ARTIFACTS=`pwd`/mnn_prebuilt
 mkdir ${DIR_ARTIFACTS}
 
@@ -128,5 +128,5 @@ find . -maxdepth 1  -executable -type f | xargs -I% mv % tools-ubuntu-2004/
 mv tools-ubuntu-2004 ${DIR_ARTIFACTS}/tools-ubuntu-2004
 
 # Compress artifacts
-cd ${DIR_MNN}/../
+cd ${DIR_TOP}
 tar czvf mnn_prebuilt_linux.tgz -C ${DIR_ARTIFACTS}/../ mnn_prebuilt
