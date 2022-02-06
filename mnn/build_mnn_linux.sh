@@ -2,6 +2,17 @@
 # docker start ubuntu20_build_00
 # docker exec -it ubuntu20_build_00 bash
 
+# Check if sudo needed
+sudo
+if [ "$?" -le 10 ]
+then
+L_SUDO=sudo
+else
+L_SUDO=
+fi
+
+set -e
+
 # Prepare output directory
 DIR_TOP=`pwd`
 DIR_ARTIFACTS=`pwd`/mnn_prebuilt
@@ -12,8 +23,8 @@ mkdir ${DIR_ARTIFACTS}
 # Note: I use a cross-compiler provided by the distribution, but you can also use 
 #   - http://releases.linaro.org/components/toolchain/binaries/latest-7/  , or 
 #   - https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-a/downloads
-apt update
-apt install -y build-essential git cmake wget unzip libprotobuf-dev protobuf-compiler libvulkan-dev vulkan-utils g++-arm-linux-gnueabi g++-arm-linux-gnueabihf g++-aarch64-linux-gnu
+${L_SUDO} apt update
+${L_SUDO} apt install -y build-essential git cmake wget unzip libprotobuf-dev protobuf-compiler libvulkan-dev vulkan-utils g++-arm-linux-gnueabi g++-arm-linux-gnueabihf g++-aarch64-linux-gnu
 
 wget https://dl.google.com/android/repository/android-ndk-r23b-linux.zip
 unzip android-ndk-r23b-linux.zip

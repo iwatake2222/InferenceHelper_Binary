@@ -2,6 +2,16 @@
 # docker start ubuntu18_build_00
 # docker exec -it ubuntu18_build_00 bash
 
+# Check if sudo needed
+sudo
+if [ "$?" -le 10 ]
+then
+L_SUDO=sudo
+else
+L_SUDO=
+fi
+
+set -e
 
 # Set env
 ARMNN_VERSION_TAG=v21.05
@@ -17,10 +27,10 @@ mkdir ${DIR_ARM_DEV}
 # Note: I use a cross-compiler provided by the distribution, but you can also use 
 #   - http://releases.linaro.org/components/toolchain/binaries/latest-7/  , or 
 #   - https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-a/downloads
-apt update
-apt install -y build-essential git cmake wget unzip crossbuild-essential-arm64
-apt install -y autoconf libtool g++ scons xxd
-# apt install -y libprotobuf-dev protobuf-compiler flatbuffers-compiler
+${L_SUDO} apt update
+${L_SUDO} apt install -y build-essential git cmake wget unzip crossbuild-essential-arm64
+${L_SUDO} apt install -y autoconf libtool g++ scons xxd
+# ${L_SUDO} apt install -y libprotobuf-dev protobuf-compiler flatbuffers-compiler
 
 # Build and install Google's Protobuf library
 cd ${DIR_ARM_DEV}
@@ -147,8 +157,6 @@ cd ..
 
 mkdir build-arm64 && cd build-arm64
 CXX=aarch64-linux-gnu-g++ CC=aarch64-linux-gnu-gcc cmake .. \
--DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ \
--DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc \
 -DARMCOMPUTE_ROOT=${DIR_ARM_DEV}/ComputeLibrary \
 -DARMCOMPUTE_BUILD_DIR=${DIR_ARM_DEV}/ComputeLibrary/build/arm64 \
 -DBOOST_ROOT=${DIR_ARM_DEV}/boost_arm64_install \
