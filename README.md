@@ -6,7 +6,7 @@
     - [todo] Edge TPU : https://github.com/google-coral/libedgetpu
     - MNN : https://github.com/alibaba/MNN
         - with + without Vulkan
-        - [![MNN Linux](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_mnn_linux.yml/badge.svg)](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_mnn_linux.yml), [![MNN Windows](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_mnn_windows.yml/badge.svg)](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_mnn_windows.yml)
+        - [![MNN Linux](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_mnn_linux.yml/badge.svg)](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_mnn_linux.yml) [![MNN Windows](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_mnn_windows.yml/badge.svg)](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_mnn_windows.yml)
     - [todo] Arm NN : https://github.com/ARM-software/armnn
     - [todo] NNabla : https://github.com/sony/nnabla
 

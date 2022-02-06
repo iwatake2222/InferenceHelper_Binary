@@ -31,12 +31,12 @@ git checkout 1.2.6
 # Native Build (linux_x64)
 mkdir build && cd build
 cmake -DCMAKE_INSTALL_PREFIX=./install .. && make -j4 && make install
-mv install ${DIR_ARTIFACTS}/ubuntu-2004
+mv install ${DIR_ARTIFACTS}/ubuntu
 cd ../ && rm -rf build
 
 mkdir build && cd build
 cmake -DMNN_VULKAN=ON -DCMAKE_INSTALL_PREFIX=./install .. && make -j4 && make install
-mv install ${DIR_ARTIFACTS}/ubuntu-2004-vulkan
+mv install ${DIR_ARTIFACTS}/ubuntu-vulkan
 cd ../ && rm -rf build
 
 
@@ -123,9 +123,9 @@ mkdir build_tool
 cd build_tool
 cmake .. -DMNN_BUILD_CONVERTER=on -DMNN_BUILD_QUANTOOLS=on -DMNN_BUILD_SHARED_LIBS=off
 make -j4
-mkdir tools-ubuntu-2004
-find . -maxdepth 1  -executable -type f | xargs -I% mv % tools-ubuntu-2004/
-mv tools-ubuntu-2004 ${DIR_ARTIFACTS}/tools-ubuntu-2004
+mkdir tools-ubuntu
+find . -maxdepth 1  -executable -type f | xargs -I% mv % tools-ubuntu/
+mv tools-ubuntu ${DIR_ARTIFACTS}/tools-ubuntu
 
 # Compress artifacts
 cd ${DIR_TOP}

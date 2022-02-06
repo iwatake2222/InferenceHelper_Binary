@@ -7,18 +7,31 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, ubuntu-18.04]
+        include:
+          - os: ubuntu-20.04
+            artifact_name: mnn_prebuilt_linux_2004.tgz
+          - os: ubuntu-18.04
+            artifact_name: mnn_prebuilt_linux_1804.tgz
 
     steps:
     - uses: actions/checkout@v2
     - name: Build
       run: bash ./mnn/build_mnn_linux.sh
 
+    - name: Rename
+      shell: bash
+      run: |
+        mv mnn_prebuilt_linux.tgz ${{ matrix.artifact_name }}
+
     - name: Upload Artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: mnn_prebuilt_linux.tgz
-        path: mnn_prebuilt_linux.tgz
+        name: ${{ matrix.artifact_name }}
+        path: ${{ matrix.artifact_name }}
 
     - name: Release
       uses: softprops/action-gh-release@v1
@@ -26,5 +39,5 @@ jobs:
       with:
         draft: true
         files: |
-          mnn_prebuilt_linux.tgz
+          ${{ matrix.artifact_name }}
           ACKNOWLEDGEMENTS.md
