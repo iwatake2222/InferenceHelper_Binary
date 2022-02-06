@@ -7,8 +7,8 @@
     - MNN : https://github.com/alibaba/MNN
         - with + without Vulkan
         - [![MNN Linux](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_mnn_linux.yml/badge.svg)](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_mnn_linux.yml) [![MNN Windows](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_mnn_windows.yml/badge.svg)](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_mnn_windows.yml)
-    - [todo] Arm NN : https://github.com/ARM-software/armnn
-    - [todo] NNabla : https://github.com/sony/nnabla
+    - Arm NN : https://github.com/ARM-software/armnn
+        - [![Arm NN Linux](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_armnn_linux.yml/badge.svg)](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_armnn_linux.yml)
 
 - Targets:
     - Windows (Visual Studio 2019)
@@ -23,3 +23,4 @@
     - SNPE (Snapdragon Neural Processing Engine SDK) : https://developer.qualcomm.com/software/qualcomm-neural-processing-sdk/tools
     - OpenCV : https://github.com/opencv/opencv
     - OpenVINO : https://www.intel.com/content/www/us/en/developer/tools/openvino-toolkit-download.html
+    - NNabla : https://github.com/sony/nnabla
