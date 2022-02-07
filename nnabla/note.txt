@@ -1,0 +1,3 @@
+- https://github.com/sony/nnabla/blob/master/doc/build/build_cpp_utils.md
+- https://github.com/sony/nnabla-ext-cuda/blob/master/doc/build/build.md
+
