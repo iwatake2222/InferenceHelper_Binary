@@ -128,7 +128,7 @@ cd ${DIR_ARM_DEV}
 git clone https://github.com/ARM-software/armnn.git
 cd armnn
 git checkout $ARMNN_VERSION_TAG
-git pull
+# git pull
 
 mkdir build-x86_64 && cd build-x86_64
 cmake .. \
