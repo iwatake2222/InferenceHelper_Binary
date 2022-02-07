@@ -47,9 +47,9 @@ cd ../ && rm -rf build
 
 mkdir build && cd build
 cmake -DMNN_VULKAN=ON -DCMAKE_INSTALL_PREFIX=./install .. && make -j4 && make install
+mv ./express/libMNN_Express.so install/lib/. && mv ./source/backend/vulkan/libMNN_Vulkan.so install/lib/.
 mv install ${DIR_ARTIFACTS}/ubuntu-vulkan
 cd ../ && rm -rf build
-
 
 # Cross Build (aarch64)
 mkdir build && cd build
@@ -74,6 +74,7 @@ cmake .. \
 -DMNN_VULKAN=ON \
 -DCMAKE_INSTALL_PREFIX=./install
 make -j4 && make install
+mv ./express/libMNN_Express.so install/lib/. && mv ./source/backend/vulkan/libMNN_Vulkan.so install/lib/.
 mv install ${DIR_ARTIFACTS}/aarch64-vulkan
 cd ../ && rm -rf build
 
@@ -101,30 +102,49 @@ cmake .. \
 -DMNN_VULKAN=ON \
 -DCMAKE_INSTALL_PREFIX=./install
 make -j4 && make install
+mv ./express/libMNN_Express.so install/lib/. && mv ./source/backend/vulkan/libMNN_Vulkan.so install/lib/.
 mv install ${DIR_ARTIFACTS}/armv7-vulkan
-
+cd ../ && rm -rf build
 
 # Cross Build (Android)
-cd ${DIR_MNN}
-./schema/generate.sh
-cd project/android
-sed -e "s/-DCMAKE_BUILD_TYPE=Release/-DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=install/g" build_64.sh > build_temp.sh
-mkdir build_64 && cd build_64 && sh ../build_temp.sh && make install && cd ..
-sed -e "s/-DCMAKE_BUILD_TYPE=Release/-DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=install/g" build_32.sh > build_temp.sh
-mkdir build_32 && cd build_32 && sh ../build_temp.sh && make install && cd ..
-mkdir android
-mv build_64/install android/arm64-v8a
-mv build_32/install android/armeabi-v7a
-mv android ${DIR_ARTIFACTS}/android
+# cd ${DIR_MNN}
+# ./schema/generate.sh
+mkdir ${DIR_ARTIFACTS}/android-vulkan
 
-sed -e "s/-DCMAKE_BUILD_TYPE=Release/-DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=install -DMNN_VULKAN=ON/g" build_64.sh > build_temp.sh
-mkdir build_64_vulkan && cd build_64_vulkan && sh ../build_temp.sh && make install && cd ..
-sed -e "s/-DCMAKE_BUILD_TYPE=Release/-DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=install -DMNN_VULKAN=ON/g" build_32.sh > build_temp.sh
-mkdir build_32_vulkan && cd build_32_vulkan && sh ../build_temp.sh && make install && cd ..
-mkdir android-vulkan
-mv build_64_vulkan/install android-vulkan/arm64-v8a
-mv build_32_vulkan/install android-vulkan/armeabi-v7a
-mv android-vulkan ${DIR_ARTIFACTS}/android-vulkan
+mkdir build && cd build
+cmake ../ \
+-DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK/build/cmake/android.toolchain.cmake \
+-DCMAKE_BUILD_TYPE=Release \
+-DANDROID_ABI="arm64-v8a" \
+-DANDROID_STL=c++_static \
+-DMNN_USE_SSE=OFF \
+-DMNN_SUPPORT_BF16=OFF \
+-DCMAKE_INSTALL_PREFIX=install \
+-DANDROID_NATIVE_API_LEVEL=android-21  \
+-DMNN_BUILD_FOR_ANDROID_COMMAND=true \
+-DNATIVE_LIBRARY_OUTPUT=. -DNATIVE_INCLUDE_OUTPUT=. \
+-DMNN_VULKAN=ON
+make -j4 && make install && mv libMNN*.so install/lib/
+mv install ${DIR_ARTIFACTS}/android-vulkan/arm64-v8a
+cd ../ && rm -rf build
+
+mkdir build && cd build
+cmake ../ \
+-DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK/build/cmake/android.toolchain.cmake \
+-DCMAKE_BUILD_TYPE=Release \
+-DANDROID_ABI="armeabi-v7a" \
+-DANDROID_STL=c++_static \
+-DMNN_USE_SSE=OFF \
+-DMNN_SUPPORT_BF16=OFF \
+-DCMAKE_INSTALL_PREFIX=install \
+-DANDROID_NATIVE_API_LEVEL=android-14  \
+-DANDROID_TOOLCHAIN=clang \
+-DMNN_BUILD_FOR_ANDROID_COMMAND=true \
+-DNATIVE_LIBRARY_OUTPUT=. -DNATIVE_INCLUDE_OUTPUT=. \
+-DMNN_VULKAN=ON
+make -j4 && make install && mv libMNN*.so install/lib/
+mv install ${DIR_ARTIFACTS}/android-vulkan/armeabi-v7a
+cd ../ && rm -rf build
 
 
 # Build Converter (linux_x64)
