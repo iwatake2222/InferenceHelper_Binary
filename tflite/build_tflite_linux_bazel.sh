@@ -32,7 +32,7 @@ pip3 install numpy
 # wget https://github.com/bazelbuild/bazel/releases/download/3.7.2/bazel-3.7.2-installer-linux-x86_64.sh
 # bash ./bazel-3.7.2-installer-linux-x86_64.sh
 wget https://github.com/bazelbuild/bazel/releases/download/4.2.1/bazel-4.2.1-installer-linux-x86_64.sh
-bash ./bazel-4.2.1-installer-linux-x86_64.sh
+${L_SUDO} bash ./bazel-4.2.1-installer-linux-x86_64.sh
 
 ## For TensorFlow Lite Android
 ${L_SUDO} apt install -y --no-install-recommends default-jdk

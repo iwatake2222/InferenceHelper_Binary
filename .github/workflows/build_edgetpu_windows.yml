@@ -1,0 +1,13 @@
+name: EdgeTPU Windows
+
+on:
+  push:
+    tags: '*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-2019
+
+    steps:
+    - uses: actions/checkout@v2

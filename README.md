@@ -1,22 +1,42 @@
 # InferenceHelper_Binary
 - Pre-built libraries for InferenceHelper ( https://github.com/iwatake2222/InferenceHelper )
 
-- Build scripts for:
-    - [todo] TensorFlow Lite : https://github.com/tensorflow/tensorflow
-    - [todo] Edge TPU : https://github.com/google-coral/libedgetpu
-    - MNN : https://github.com/alibaba/MNN
-        - with + without Vulkan
-        - [![MNN Linux](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_mnn_linux.yml/badge.svg)](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_mnn_linux.yml) [![MNN Windows](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_mnn_windows.yml/badge.svg)](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_mnn_windows.yml)
-    - Arm NN : https://github.com/ARM-software/armnn
-        - [![Arm NN Linux](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_armnn_linux.yml/badge.svg)](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_armnn_linux.yml)
-
-- Targets:
-    - Windows (Visual Studio 2019)
-    - Linux (x64)
-    - Linux (aarch64)
-    - Linux (armv7)
-    - Linux (Android arm64-v8a)
-    - Linux (Android armeabi-v7a)
+- [WIP] TensorFlow Lite : https://github.com/tensorflow/tensorflow
+    - [![TfLite Linux](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_tflite_linux.yml/badge.svg)](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_tflite_linux.yml) [![TfLite Windows](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_tflite_windows.yml/badge.svg)](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_tflite_windows.yml)
+    - Options:
+        - with XNNPACK delegate (x64 and aarch64 only)
+        - with GPU delegate (Android only)
+        - ~~with NNAPI delegate (Android only)~~
+    - Targets:
+        - Linux (x64)
+        - Linux (aarch64)
+        - Linux (armv7)
+        - Linux (Android arm64-v8a)
+        - Linux (Android armeabi-v7a)
+        - Windows (Visual Studio 2019)
+- [WIP] Edge TPU : https://github.com/google-coral/libedgetpu
+    - [![EdgeTPU Linux](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_edgetpu_linux.yml/badge.svg)](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_edgetpu_linux.yml) [![EdgeTPU Windows](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_edgetpu_windows.yml/badge.svg)](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_edgetpu_windows.yml)
+    - Targets:
+        - Linux (x64)
+        - Linux (aarch64)
+        - Linux (armv7)
+        - Windows (Visual Studio 2019)
+- MNN : https://github.com/alibaba/MNN
+    - [![MNN Linux](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_mnn_linux.yml/badge.svg)](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_mnn_linux.yml) [![MNN Windows](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_mnn_windows.yml/badge.svg)](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_mnn_windows.yml)
+    - Options:
+        - with / without Vulkan
+    - Targets:
+        - Linux (x64)
+        - Linux (aarch64)
+        - Linux (armv7)
+        - Linux (Android arm64-v8a)
+        - Linux (Android armeabi-v7a)
+        - Windows (Visual Studio 2019)
+- Arm NN : https://github.com/ARM-software/armnn
+    - [![Arm NN Linux](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_armnn_linux.yml/badge.svg)](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_armnn_linux.yml)
+    - Targets:
+        - Linux (aarch64)
+        - Linux (armv7)
 
 - As for the following frameworks, the official provides pre-built libraries
     - ncnn : https://github.com/Tencent/ncnn
