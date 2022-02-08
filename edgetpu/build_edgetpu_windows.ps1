@@ -2,7 +2,7 @@
 
 
 # Install requirements
-
+pip install numpy
 
 # Set env
 # $env:BAZEL_VC="C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC"
@@ -13,6 +13,12 @@ $env:EDGETPU_VERSION_TAG="release-grouper"
 $env:TFLITE_VERSION_TAG="v2.8.0"
 $env:TFLITE_VERSION_HASH="3f878cff5b698b82eea85db2b60d65a2e320850e"
 $env:TFLITE_VERSION_SHA256="21d919ad6d96fcc0477c8d4f7b1f7e4295aaec2986e035551ed263c2b1cd52ee"
+
+
+# Get dependencies (libusb)
+curl -L https://github.com/libusb/libusb/releases/download/v1.0.24/libusb-1.0.24.7z -o temp.7z
+7z x -o"./libusb" temp.7z
+# 7z x -o"c:/libusb" temp.7z
 
 
 # Get code
@@ -32,6 +38,9 @@ rm *.txt
 
 # Compress artifacts
 cd ..
-mkdir -p edgetpu_prebuilt/windows-vs2019
-cp -r libedgetpu/out/* edgetpu_prebuilt/windows-vs2019/.
+mkdir -p edgetpu_prebuilt/direct/windows-vs2019
+cp -r libedgetpu/bazel-out/x64_windows-opt/bin/tflite/public/edgetpu_direct_all.dll edgetpu_prebuilt/direct/windows-vs2019/.
+cp -r libedgetpu/bazel-out/x64_windows-opt/bin/tflite/public/edgetpu_direct_all.dll.if.lib edgetpu_prebuilt/direct/windows-vs2019/.
+cp -r libedgetpu/bazel-out/x64_windows-opt/bin/tflite/public/libusb-1.0.dll edgetpu_prebuilt/direct/windows-vs2019/.
+
 powershell Compress-Archive -Path edgetpu_prebuilt -DestinationPath edgetpu_prebuilt_windows.zip
