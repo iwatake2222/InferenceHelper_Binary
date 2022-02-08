@@ -11,3 +11,27 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
+    - name: setup-msbuild
+      uses: microsoft/setup-msbuild@v1.1
+      with:
+        vs-version: '[16.0,16.20)'  # Make sure to use Visual Studio 2019
+
+    - name: Build
+      run: |
+        ./edgetpu/build_edgetpu_windows.ps1
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: edgetpu_prebuilt_windows.zip
+        path: ./edgetpu_prebuilt_windows.zip
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        draft: true
+        files: |
+          ./edgetpu_prebuilt_windows.zip
+          ACKNOWLEDGEMENTS.md
