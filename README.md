@@ -14,7 +14,7 @@
         - Linux (Android arm64-v8a)
         - Linux (Android armeabi-v7a)
         - Windows (Visual Studio 2019)
-- [WIP] Edge TPU : https://github.com/google-coral/libedgetpu
+- Edge TPU : https://github.com/google-coral/libedgetpu
     - [![EdgeTPU Linux](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_edgetpu_linux.yml/badge.svg)](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_edgetpu_linux.yml) [![EdgeTPU Windows](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_edgetpu_windows.yml/badge.svg)](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_edgetpu_windows.yml)
     - Targets:
         - Linux (x64)

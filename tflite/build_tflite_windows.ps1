@@ -42,7 +42,6 @@ bazel build //tensorflow/lite:libtensorflowlite.so `
 # Compress artifacts
 cd ..
 mkdir -p tflite_prebuilt/windows-vs2019
-# mv tensorflow/bazel-bin/tensorflow/lite/libtensorflowlite.so tflite_prebuilt/windows-vs2019/.
-# mv tensorflow/bazel-bin/tensorflow/lite/libtensorflowlite.so.if.lib tflite_prebuilt/windows-vs2019/.
-mv tensorflow/bazel-bin/tensorflow/lite/libtensorflowlite* tflite_prebuilt/windows-vs2019/.
+mv tensorflow/bazel-bin/tensorflow/lite/libtensorflowlite.so tflite_prebuilt/windows-vs2019/.
+mv tensorflow/bazel-bin/tensorflow/lite/libtensorflowlite.so.if.lib tflite_prebuilt/windows-vs2019/.
 powershell Compress-Archive -Path tflite_prebuilt -DestinationPath tflite_prebuilt_windows.zip
