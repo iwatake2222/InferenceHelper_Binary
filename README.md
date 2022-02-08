@@ -1,7 +1,7 @@
 # InferenceHelper_Binary
 - Pre-built libraries for InferenceHelper ( https://github.com/iwatake2222/InferenceHelper )
 
-- [WIP] TensorFlow Lite : https://github.com/tensorflow/tensorflow
+- TensorFlow Lite : https://github.com/tensorflow/tensorflow
     - [![TfLite Linux](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_tflite_linux.yml/badge.svg)](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_tflite_linux.yml) [![TfLite Windows](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_tflite_windows.yml/badge.svg)](https://github.com/iwatake2222/InferenceHelper_Binary/actions/workflows/build_tflite_windows.yml)
     - Options:
         - with XNNPACK delegate (x64 and aarch64 only)
