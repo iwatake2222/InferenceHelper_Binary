@@ -137,6 +137,14 @@ cp bazel-bin/tensorflow/lite/libtensorflowlite.so ${DIR_ARTIFACTS}/armv7/.
 
 
 # Cross Build (Android armv8)
+## Patch for NNAPI support
+awk ' \
+$0 ~ "name = \"framework_experimental\"," {found_target=1} \
+found_target {found_target=!sub("\"//tensorflow/lite/schema:schema_fbs\",", "\"//tensorflow/lite/schema:schema_fbs\",\"//tensorflow/lite/delegates/nnapi:nnapi_delegate\",\"//tensorflow/lite/nnapi:nnapi_implementation\",")} \
+1' tensorflow/lite/BUILD > temp.txt
+mv temp.txt tensorflow/lite/BUILD
+
+## Build
 PYTHON_BIN_PATH=/usr/bin/python3 \
 PYTHON_LIB_PATH=/usr/lib/python3/dist-packages \
 TF_NEED_ROCM=0 \
