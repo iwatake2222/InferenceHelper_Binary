@@ -6,7 +6,7 @@
     - Options:
         - with XNNPACK delegate (x64 and aarch64 only)
         - with GPU delegate (Android only)
-        - ~~with NNAPI delegate (Android only)~~
+        - with NNAPI delegate (Android only)
     - Targets:
         - Linux (x64)
         - Linux (aarch64)
