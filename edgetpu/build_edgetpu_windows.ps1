@@ -1,9 +1,6 @@
 # Run on GitHub Actions
 
 
-# Install requirements
-pip install numpy
-
 # Set env
 # $env:BAZEL_VC="C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC"
 # $env:BAZEL_VS="C:/Program Files (x86)/Microsoft Visual Studio/2019/Community"
@@ -13,6 +10,9 @@ $env:EDGETPU_VERSION_TAG="release-grouper"
 $env:TFLITE_VERSION_TAG="v2.8.0"
 $env:TFLITE_VERSION_HASH="3f878cff5b698b82eea85db2b60d65a2e320850e"
 $env:TFLITE_VERSION_SHA256="21d919ad6d96fcc0477c8d4f7b1f7e4295aaec2986e035551ed263c2b1cd52ee"
+
+# Install requirements
+pip install numpy
 
 
 # Get dependencies (libusb)
@@ -30,17 +30,31 @@ Get-Content workspace.bzl | foreach { $_ -creplace "a4dfb8d1a71385bd6d122e4f27f8
 Get-Content temp1.txt | foreach { $_ -creplace "cb99f136dc5c89143669888a44bfdd134c086e1e2d9e36278c1eb0f03fe62d76", $env:TFLITE_VERSION_SHA256 } > temp2.txt
 cat temp2.txt | Out-File workspace.bzl -Encoding ascii
 rm *.txt
+cd ..
 
-
-# Build
+# Build for Release mode
+cd libedgetpu
 ./build.bat
 
-
-# Compress artifacts
+## Collect artifacts
 cd ..
 mkdir -p edgetpu_prebuilt/direct/windows-vs2019
 cp -r libedgetpu/bazel-out/x64_windows-opt/bin/tflite/public/edgetpu_direct_all.dll edgetpu_prebuilt/direct/windows-vs2019/.
 cp -r libedgetpu/bazel-out/x64_windows-opt/bin/tflite/public/edgetpu_direct_all.dll.if.lib edgetpu_prebuilt/direct/windows-vs2019/.
 cp -r libedgetpu/bazel-out/x64_windows-opt/bin/tflite/public/libusb-1.0.dll edgetpu_prebuilt/direct/windows-vs2019/.
 
+
+# Build for Debug mode
+cd libedgetpu
+./build.bat /DBG
+
+## Collect artifacts
+cd ..
+mkdir -p edgetpu_prebuilt/direct/windows-vs2019/debug
+cp -r libedgetpu/bazel-out/x64_windows-opt/bin/tflite/public/edgetpu_direct_all.dll edgetpu_prebuilt/direct/windows-vs2019/debug/.
+cp -r libedgetpu/bazel-out/x64_windows-opt/bin/tflite/public/edgetpu_direct_all.dll.if.lib edgetpu_prebuilt/direct/windows-vs2019/debug/.
+cp -r libedgetpu/bazel-out/x64_windows-opt/bin/tflite/public/libusb-1.0.dll edgetpu_prebuilt/direct/windows-vs2019/debug/.
+
+
+## Compress artifacts
 powershell Compress-Archive -Path edgetpu_prebuilt -DestinationPath edgetpu_prebuilt_windows.zip
