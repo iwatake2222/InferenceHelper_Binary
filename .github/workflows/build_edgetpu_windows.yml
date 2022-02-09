@@ -20,14 +20,6 @@ jobs:
       with:
         vs-version: '[16.0,16.20)'  # Make sure to use Visual Studio 2019
 
-    - name: Check Environment
-      run: |
-        bazel version
-        python -V
-        python3 -V
-        which python
-        which bazel
-
     - name: Build
       run: |
         # By default, I can't use rc.exe (reference: https://github.com/actions/virtual-environments/issues/294)
@@ -44,6 +36,7 @@ jobs:
         Invoke-VSDevEnvironment
         Get-Command rc.exe | Format-Table -AutoSize
         rc.exe 
+        
         ./edgetpu/build_edgetpu_windows.ps1
 
     - name: Upload Artifacts
